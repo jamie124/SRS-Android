@@ -3,8 +3,6 @@ package com.srs_android.ui;
 import com.srs_android.ApplicationState;
 import com.srs_android.Constants;
 import com.srs_android.R;
-import com.srs_android.R.id;
-import com.srs_android.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
