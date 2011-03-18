@@ -74,7 +74,7 @@ public class Connector {
 
 			response = httpConn.getResponseCode();
 
-			if (response == HttpURLConnection.HTTP_OK) {
+			if (response == HttpURLConnection.HTTP_ACCEPTED) {
 				in = httpConn.getInputStream();
 			}
 		} catch (Exception ex) {
