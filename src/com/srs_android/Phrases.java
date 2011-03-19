@@ -12,6 +12,7 @@ public class Phrases {
 		phraseList.put("start_screen_username", "Username:");
 		phraseList.put("start_screen_password", "Password:");
 		phraseList.put("start_screen_details_missing", "The Username and/or Password fields are Missing");
+		phraseList.put("password_incorrect", "The Provided Password is Incorrect");
 	}
 	
 	public String getPhrase(String phraseKey){

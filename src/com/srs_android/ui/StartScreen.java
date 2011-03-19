@@ -1,11 +1,14 @@
 package com.srs_android.ui;
 
+import java.util.logging.Logger;
+
 import com.srs_android.ApplicationState;
 import com.srs_android.Constants;
 import com.srs_android.R;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -64,9 +67,15 @@ public class StartScreen extends Activity {
 			url += Constants.SRS_GATEWAY + "?r=login&username=" + username + "&password=" + password;
 
 			try {
-				rec.connector.sendRequest(url, false);
+				String response = rec.connector.sendRequest(url, false);
+				
+				if (response.equals("202")){
+					startActivity(new Intent(StartScreen.this, MainMenu.class));
+				} else if (response.equals("401")){
+					Toast.makeText(rec.context, rec.phrases.getPhrase("password_incorrect"), Toast.LENGTH_SHORT).show();
+				}
 			} catch (Exception ex) {
-
+				
 			}
 		}
 	}

@@ -19,6 +19,7 @@
     
     <EditText 
     	android:id="@+id/enterUsername"
+    	android:text="James"
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content" />
     
@@ -31,6 +32,7 @@
     
     <EditText 
     	android:id="@+id/enterPassword" 
+    	android:text="P@ssword1"
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content" />
     </LinearLayout>

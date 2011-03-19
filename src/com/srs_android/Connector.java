@@ -74,9 +74,8 @@ public class Connector {
 
 			response = httpConn.getResponseCode();
 
-			if (response == HttpURLConnection.HTTP_ACCEPTED) {
-				in = httpConn.getInputStream();
-			}
+			in = httpConn.getInputStream();
+			
 		} catch (Exception ex) {
 			if (propagateException) {
 				throw ex;
@@ -94,8 +93,8 @@ public class Connector {
 		return in;
 	}
 
-	public void sendRequest(String URL, boolean propagateException) throws Exception {
-		openHttpConnection(URL, propagateException);
+	public String sendRequest(String URL, boolean propagateException) throws Exception {
+		return convertStreamToString(openHttpConnection(URL, propagateException));
 	}
 
 	// Download JSON string
@@ -116,7 +115,8 @@ public class Connector {
 		String line = null;
 
 		while ((line = br.readLine()) != null) {
-			sb.append(line + "\n");
+			//sb.append(line + "\n");
+			sb.append(line);
 		}
 
 		br.close();
