@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.srs_android.ApplicationState;
 import com.srs_android.Constants;
 import com.srs_android.R;
+import com.srs_android.json.Parser;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -29,11 +30,11 @@ public class StartScreen extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.login);
 
-		rec = new ApplicationState();
+		rec = (ApplicationState)getApplication();
 
-		rec.context = getApplicationContext();
+		//rec.context = getApplicationContext();
 
 		username = (TextView) findViewById(R.id.username);
 		password = (TextView) findViewById(R.id.password);
@@ -63,19 +64,24 @@ public class StartScreen extends Activity {
 
 			if (Constants.DEBUG)
 				url = Constants.SRS_SERVER_DEBUG;
+			else
+				url = Constants.SRS_SERVER;
 
-			url += Constants.SRS_GATEWAY + "?r=login&username=" + username + "&password=" + password;
+			url += Constants.SRS_GATEWAY;
 
 			try {
-				String response = rec.connector.sendRequest(url, false);
-				
-				if (response.equals("202")){
+				String response = rec.connector.sendRequest(String.format(url + Constants.REST_USER_LOGIN, username, password), false);
+
+				if (response.equals("202")) {
+					response = rec.connector.sendRequest(String.format(url + Constants.REST_GET_USER, username, password), false);
+					rec.user = Parser.parseUserData(response);
+
 					startActivity(new Intent(StartScreen.this, MainMenu.class));
-				} else if (response.equals("401")){
+				} else if (response.equals("401")) {
 					Toast.makeText(rec.context, rec.phrases.getPhrase("password_incorrect"), Toast.LENGTH_SHORT).show();
 				}
 			} catch (Exception ex) {
-				
+
 			}
 		}
 	}
