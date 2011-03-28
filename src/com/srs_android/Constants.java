@@ -3,8 +3,8 @@ package com.srs_android;
 public class Constants {
 
 	public static final boolean DEBUG = true;
-	//public static final String SRS_SERVER_DEBUG = "http://192.168.1.74:8080";
-	public static final String SRS_SERVER_DEBUG = "http://192.168.1.64:8080";
+	public static final String SRS_SERVER_DEBUG = "http://192.168.1.74:8080";
+	//public static final String SRS_SERVER_DEBUG = "http://192.168.1.64:8080";
 	public static final String SRS_SERVER = "http://192.168.1.64:8080";
 	
 	public static final String SRS_GATEWAY = "/srs_web_server/Server";

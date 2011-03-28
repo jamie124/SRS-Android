@@ -83,7 +83,7 @@ public class Connector {
 				if (rec.activeActivity != null) {
 					rec.activeActivity.runOnUiThread(new Runnable() {
 						public void run() {
-							Toast.makeText(rec.activeActivity, "The connection has timed out.", Toast.LENGTH_LONG).show();
+							Toast.makeText(rec.activeActivity, "The connection has timed out.", Toast.LENGTH_SHORT).show();
 						}
 					});
 				}
