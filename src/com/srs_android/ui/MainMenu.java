@@ -73,16 +73,20 @@ public class MainMenu extends Activity {
 			public void run() {
 				runOnUiThread(new Runnable() {
 					public void run() {
-						checkForNewQuestion();
+						if (rec.checkForQuestion()) {
+							checkForNewQuestion();
 
-						if (rec.user.questionAvailable())
-							questionAvailable.setText(rec.phrases.getPhrase("main_screen_question_available"));
-						else
-							questionAvailable.setText(rec.phrases.getPhrase("main_screen_no_question"));
+							if (rec.user.questionAvailable())
+								questionAvailable.setText(rec.phrases.getPhrase("main_screen_question_available"));
+							else
+								questionAvailable.setText(rec.phrases.getPhrase("main_screen_no_question"));
+							
+							rec.checkForQuestion(false);
+						}
 					}
 				});
 			}
-		}, 100, 1000);
+		}, 100, 10000);
 	}
 
 	private void checkForNewQuestion() {
@@ -98,7 +102,8 @@ public class MainMenu extends Activity {
 		try {
 
 			String response = rec.connector.sendRequest(String.format(url + Constants.REST_CHECK_FOR_QUESTION, rec.user.userName()), false);
-			rec.user = Parser.parseUserData(response);
+			rec.question = (Parser.parseQuestionData(response));
+			rec.user.questionAvailable(true);
 
 		} catch (Exception ex) {
 

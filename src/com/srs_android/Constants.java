@@ -15,5 +15,5 @@ public class Constants {
 	// REST calls
 	public static final String REST_USER_LOGIN = "?r=login&username=%s&password=%s";
 	public static final String REST_GET_USER = "?r=getUser&username=%s&password=%s";
-	public static final String REST_CHECK_FOR_QUESTION = "?r=getQuestion&username=%s";
+	public static final String REST_CHECK_FOR_QUESTION = "?r=getNextQuestion&username=%s";
 }

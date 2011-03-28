@@ -16,7 +16,8 @@ public class ApplicationState extends Application {
 	public Connector connector;
 	public User user = null;
 	public Question question = null;
-
+	
+	private boolean checkForQuestion;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -24,7 +25,16 @@ public class ApplicationState extends Application {
 		context = getApplicationContext();
 
 		connector = new Connector(this);
-
 		phrases = new Phrases();
+		
+		checkForQuestion(true);
+		
+	}
+	
+	public boolean checkForQuestion() {
+		return checkForQuestion;
+	}
+	public void checkForQuestion(boolean checkForQuestion) {
+		this.checkForQuestion = checkForQuestion;
 	}
 }
